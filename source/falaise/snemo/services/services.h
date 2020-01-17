@@ -31,6 +31,9 @@ class service_info {
 
   /// Return the default string label/name for the 'cuts' service
   static const std::string& cutServiceName();
+
+  /// Return the default string label/name for the 'database' service
+  static const std::string& databaseServiceName();
 };
 
 }  // end of namespace snemo
