@@ -40,8 +40,6 @@
 #include <datatools/version_check.h>
 #include <datatools/exception.h>
 
-#include "mysql_driver.h" 
-
 namespace database {
 
   DATATOOLS_FACTORY_SYSTEM_REGISTER_IMPLEMENTATION(manager::base_plugin,
@@ -582,12 +580,6 @@ namespace database {
 
     DT_LOG_NOTICE(_logging, "connection to " << _db_server_ << ":" << _db_port_ << " with user = " << _db_user_ << " ...");
     std::cout << "connection to " << _db_server_ << ":" << _db_port_ << " with user = " << _db_user_ << " ..." << std::endl;
-
-    sql::mysql::MySQL_Driver *driver;
-    try {     
-      driver = sql::mysql::get_driver_instance();
-
-    //
     
     DT_LOG_DEBUG(_logging, "Properties are parsed...");
 
