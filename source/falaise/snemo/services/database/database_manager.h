@@ -266,8 +266,6 @@ namespace database {
     /// Check if the mapping is built
     bool is_mapping_available() const;
 
-    /// Set the name of the world volume
-
     /* Plugins management */
 
     bool can_drop_plugin(const std::string& plugin_name_);
@@ -396,6 +394,11 @@ namespace database {
     std::string              _setup_description_; //!< the description of the database setup
 
     datatools::service_dict_type * _services_;    //!< Handle to a dictionary of services
+
+		std::string  _db_server_;    //!< The database server address
+		std::string  _db_port_;      //!< The database server port
+		std::string  _db_user_;      //!< The database username
+		std::string  _db_password_;  //!< The database user's password
 
     bool                                _plugins_factory_preload_;  //!< Flag for preloading of plugins system factory
     bool                                _plugins_force_initialization_at_load_; //!< Flag to enforce initialization of plugins at load

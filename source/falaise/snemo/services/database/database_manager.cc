@@ -18,7 +18,7 @@
  */
 
 // Ourselves:
-#include <snemo/services/database/manager.h>
+#include <snemo/services/database/database_manager.h>
 
 // Standard library:
 #include <cstdlib>
@@ -39,6 +39,8 @@
 #include <datatools/version_id.h>
 #include <datatools/version_check.h>
 #include <datatools/exception.h>
+
+#include "mysql_driver.h" 
 
 namespace database {
 
@@ -449,6 +451,10 @@ namespace database {
   {
     _logging            = datatools::logger::PRIO_WARNING;
     _initialized_       = false;
+    _db_server_ = "";
+    _db_port_ = "";
+    _db_user_ = "";
+    _db_password_ = "";
     _services_ = 0;
     _plugins_factory_preload_ = true;
     _plugins_force_initialization_at_load_ = false;
@@ -557,19 +563,32 @@ namespace database {
       set_logging_priority (lp);
     }
 
-    if (config_.has_flag ("plugins.factory_no_preload")) {
-      _plugins_factory_preload_ = false;
-    }
-
-    if (config_.has_flag ("plugins.force_initialization_at_load")) {
-      _plugins_force_initialization_at_load_ = true;
-    }
-
     // if (config_.has_key ("world_name")) {
     //   world_name = config_.fetch_string ("world_name");
     //   set_world_name (world_name);
     // }
 
+    if (config_.has_key ("db_server"))
+      _db_server_ = config_.fetch_string("db_server");
+
+    if (config_.has_key ("db_port"))
+      _db_port_ = config_.fetch_string("db_port");
+
+    if (config_.has_key ("db_user"))
+      _db_user_ = config_.fetch_string("db_user");
+
+    if (config_.has_key ("db_password"))
+      _db_password_ = config_.fetch_string("db_password");
+
+    DT_LOG_NOTICE(_logging, "connection to " << _db_server_ << ":" << _db_port_ << " with user = " << _db_user_ << " ...");
+    std::cout << "connection to " << _db_server_ << ":" << _db_port_ << " with user = " << _db_user_ << " ..." << std::endl;
+
+    sql::mysql::MySQL_Driver *driver;
+    try {     
+      driver = sql::mysql::get_driver_instance();
+
+    //
+    
     DT_LOG_DEBUG(_logging, "Properties are parsed...");
 
     // initializations:

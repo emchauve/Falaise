@@ -146,7 +146,7 @@ list(APPEND FalaiseLibrary_TESTS_CATCH
   snemo/test/test_snemo_datamodel_timestamp.cxx
   snemo/test/test_module.cxx
   snemo/test/test_service.cxx
-  snemo/test/test_database.cxx
+  snemo/test/test_database_service.cxx
   )
 list(APPEND FalaiseLibrary_TESTS
   snemo/test/test_snemo_datamodel_event_header.cxx
