@@ -20,6 +20,8 @@
 // Ourselves:
 #include <snemo/services/database/database_manager.h>
 
+#include <snemo/services/database/database_connexion.h>
+
 // Standard library:
 #include <cstdlib>
 #include <cmath>
@@ -578,9 +580,9 @@ namespace database {
     if (config_.has_key ("db_password"))
       _db_password_ = config_.fetch_string("db_password");
 
-    DT_LOG_NOTICE(_logging, "connection to " << _db_server_ << ":" << _db_port_ << " with user = " << _db_user_ << " ...");
-    std::cout << "connection to " << _db_server_ << ":" << _db_port_ << " with user = " << _db_user_ << " ..." << std::endl;
-    
+    database::connexion *database_connexion_ = new database::connexion (_db_server_, _db_user_, _db_password_);
+    database_connexion_->connect();
+
     DT_LOG_DEBUG(_logging, "Properties are parsed...");
 
     // initializations:

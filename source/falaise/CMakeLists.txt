@@ -81,6 +81,10 @@ endforeach()
 #-----------------------------------------------------------------------
 # Build/Link Library
 #
+## find_package(PkgConfig)
+## pkg_check_modules(MySQL mysqlclient REQUIRED IMPORTED_TARGET)
+## pkg_check_modules(MariaDB libmariadb REQUIRED IMPORTED_TARGET)
+
 add_library(Falaise SHARED ${FalaiseLibrary_HEADERS} ${FalaiseLibrary_SOURCES})
 target_compile_features(Falaise PUBLIC ${FALAISE_CXX_COMPILE_FEATURES})
 target_compile_definitions(Falaise PRIVATE ENABLE_BINRELOC)
@@ -92,6 +96,7 @@ target_include_directories(Falaise PUBLIC
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/falaise>
   )
 target_link_libraries(Falaise PUBLIC Bayeux::Bayeux)
+## target_link_libraries(Falaise PUBLIC Bayeux::Bayeux PkgConfig::MySQL)
 target_clang_format(Falaise)
 
 # - Rpath it

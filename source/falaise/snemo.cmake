@@ -71,6 +71,7 @@ list(APPEND FalaiseLibrary_HEADERS
 
   snemo/services/database/database_service.h
   snemo/services/database/database_manager.h
+  snemo/services/database/database_connexion.h
 
   snemo/cuts/event_header_cut.h
   snemo/cuts/simulated_data_cut.h
@@ -132,6 +133,7 @@ list(APPEND FalaiseLibrary_SOURCES
 
   snemo/services/database/database_service.cc
   snemo/services/database/database_manager.cc
+  snemo/services/database/database_connexion.cc
 
   snemo/simulation/cosmic_muon_generator.cc
   snemo/simulation/gg_step_hit_processor.cc

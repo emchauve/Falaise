@@ -14,7 +14,7 @@ TEST_CASE("Construction from good services works", "") {
   datatools::service_manager dummyServices{};
   datatools::multi_properties config;
   config.add_section("database", "database::database_service")
-      .store_path("manager.configuration_file", "@falaise:snemo/demonstrator/database/DatabaseManager.conf");
+    .store_path("manager.configuration_file", "@falaise:snemo/demonstrator/database/DatabaseManager.conf");
 
   dummyServices.load(config);
   dummyServices.initialize();
