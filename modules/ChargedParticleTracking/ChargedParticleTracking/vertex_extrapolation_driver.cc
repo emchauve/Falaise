@@ -66,12 +66,12 @@ namespace snemo {
   
       // Identify source strips:
       _sourceStripType_ = geomtools::geom_id::INVALID_TYPE;
-      if (geoIdMgr.has_category_info("source_strip")) {
-        _sourceStripType_ = geoIdMgr.get_category_info("source_strip").get_type();
+      if (geoIdMgr.has_category_info("source_strip_path")) {
+        _sourceStripType_ = geoIdMgr.get_category_info("source_strip_path").get_type();
         geomtools::geom_id sourceStripGidPattern(_sourceStripType_,
                                                  _module_id_,
                                                  geomtools::geom_id::ANY_ADDRESS);
-        geoMapping.compute_matching_geom_id(sourceStripGidPattern, _sourceStripGids_);
+	 geoMapping.compute_matching_geom_id(sourceStripGidPattern, _sourceStripGids_);
       }
       DT_LOG_DEBUG(logPriority_, "Found " << _sourceStripGids_.size() << " source strips");
   
