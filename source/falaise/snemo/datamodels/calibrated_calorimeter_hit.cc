@@ -62,13 +62,12 @@ namespace snemo {
       std::ostringstream prefix_os;
       prefix_os << indent << datatools::i_tree_dumpable::tag;
       std::string prefix = prefix_os.str();
-      out << indent << datatools::i_tree_dumpable::tag << "Time  : " << time_ / CLHEP::ns << " ns\n"
-          << indent << datatools::i_tree_dumpable::tag << "Sigma(time) : " << sigma_time_ / CLHEP::ns
-          << " ns\n"
-          << indent << datatools::i_tree_dumpable::tag << "Energy  : " << energy_ / CLHEP::keV
-          << " keV\n"
-          << indent << datatools::i_tree_dumpable::inherit_tag(popts.inherit)
-          << "Sigma(energy) : " << sigma_energy_ / CLHEP::keV << " keV" << std::endl;
+      out << indent << datatools::i_tree_dumpable::tag
+	  << "Energy: " << energy_ / CLHEP::keV << " +/- "
+	  << sigma_energy_ / CLHEP::keV << " keV" << std::endl;
+      out << indent << datatools::i_tree_dumpable::inherit_tag(popts.inherit)
+	  << "Time: " << time_ / CLHEP::ns << " +/- "
+	  << sigma_time_ / CLHEP::ns << " ns\n";
     }
 
   } // end of namespace datamodel

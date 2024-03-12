@@ -47,16 +47,16 @@ namespace snemo {
                                public datatools::i_clear {
     public:
       /// Return the const collection of calorimeter hits
-      const PreCalibCalorimeterHitHdlCollection& calorimeter_hits() const;
+      const PreCalibratedCalorimeterHitHdlCollection& calorimeter_hits() const;
 
       /// Return the mutable collection of calorimeter hits
-      PreCalibCalorimeterHitHdlCollection& calorimeter_hits();
+      PreCalibratedCalorimeterHitHdlCollection& calorimeter_hits();
 
       /// Return the const collection of tracker hits
-      const PreCalibTrackerHitHdlCollection& tracker_hits() const;
+      const PreCalibratedTrackerHitHdlCollection& tracker_hits() const;
 
       /// Return the mutable collection of tracker hits
-      PreCalibTrackerHitHdlCollection& tracker_hits();
+      PreCalibratedTrackerHitHdlCollection& tracker_hits();
 
       /// Clear attributes
       virtual void clear() override;
@@ -66,8 +66,8 @@ namespace snemo {
                              const std::string& indent = "", bool is_last = false) const override;
 
     private:
-      PreCalibCalorimeterHitHdlCollection calorimeter_hits_;  //!< Collection of precalibrated calorimeter hits
-      PreCalibTrackerHitHdlCollection tracker_hits_;          //!< Collection of precalibrated tracker hits
+      PreCalibratedCalorimeterHitHdlCollection calorimeter_hits_;  //!< Collection of precalibrated calorimeter hits
+      PreCalibratedTrackerHitHdlCollection tracker_hits_;          //!< Collection of precalibrated tracker hits
 
       datatools::properties
       _properties_;  //!< Auxiliary properties (only retained for serialization compat)

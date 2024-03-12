@@ -171,10 +171,10 @@ namespace snemo {
     };
 
     /// Aliases for handle and collection of precalibrated tracker hit
-    using PreCalibTrackerHit = precalibrated_tracker_hit;
-    using PreCalibTrackerHitCollection = std::vector<PreCalibTrackerHit>;
-    using PreCalibTrackerHitHdl = datatools::handle<PreCalibTrackerHit>;
-    using PreCalibTrackerHitHdlCollection = std::vector<PreCalibTrackerHitHdl>;
+    using PreCalibratedTrackerHit = precalibrated_tracker_hit;
+    using PreCalibratedTrackerHitCollection = std::vector<PreCalibratedTrackerHit>;
+    using PreCalibratedTrackerHitHdl = datatools::handle<PreCalibratedTrackerHit>;
+    using PreCalibratedTrackerHitHdlCollection = std::vector<PreCalibratedTrackerHitHdl>;
 
     using precalibrated_tracker_hit_collection = std::vector<precalibrated_tracker_hit>;
     using precalibrated_tracker_hit_handle = datatools::handle<precalibrated_tracker_hit>;

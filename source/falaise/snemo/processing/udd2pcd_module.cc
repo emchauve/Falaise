@@ -155,7 +155,7 @@ namespace snemo {
 
     // Precalibrate calorimeter hits from UDD informations:
     void udd2pcd_module::precalibrate_calo_hits_fwmeas(const snemo::datamodel::unified_digitized_data & udd_data_,
-						       snemo::datamodel::PreCalibCalorimeterHitHdlCollection & calo_hits_) {
+						       snemo::datamodel::PreCalibratedCalorimeterHitHdlCollection & calo_hits_) {
 
       // Constants
       const double CALO_ADC2VOLT = _calo_adc2volt_;
@@ -245,7 +245,7 @@ namespace snemo {
 
     // Precalibrate calorimeter hits from UDD informations:
     void udd2pcd_module::precalibrate_calo_hits_swmeas(const snemo::datamodel::unified_digitized_data & udd_data_,
-						       snemo::datamodel::PreCalibCalorimeterHitHdlCollection & calo_hits_) {
+						       snemo::datamodel::PreCalibratedCalorimeterHitHdlCollection & calo_hits_) {
 
       // Constants
       const double CALO_ADC2VOLT = _calo_adc2volt_;
@@ -428,7 +428,7 @@ namespace snemo {
 
     // Precalibrate tracker hits from UDD informations:
     void udd2pcd_module::precalibrate_tracker_hits_earliest(const snemo::datamodel::unified_digitized_data & udd_data_,
-							    snemo::datamodel::PreCalibTrackerHitHdlCollection & tracker_hits_) {
+							    snemo::datamodel::PreCalibratedTrackerHitHdlCollection & tracker_hits_) {
       // Constants
       const double TRACKER_TDC_TICK = 12.5 * CLHEP::nanosecond;
 
@@ -860,7 +860,7 @@ namespace snemo {
 
       if (_tracker_pcd_algo_ == ALGO_TRACKER_BASIC_CLUSTER) {
 	this->precalibrate_tracker_hits_earliest(udd_data_, pcd_data_.tracker_hits());
-	this->basic_tracker_clusterisation(pcd_data_);
+	// this->basic_tracker_clusterisation(pcd_data_);
       }
 
     }
@@ -882,53 +882,46 @@ namespace snemo {
  */
 DOCD_CLASS_IMPLEMENT_LOAD_BEGIN(snemo::processing::udd2pcd_module, ocd_) {
   ocd_.set_class_name("snemo::processing::udd2pcd_module");
-  ocd_.set_class_description(
-                             "A module that performs a precalibration of the unified digitized data (UDD) bank of the calorimeter and tracker data writing in the precalibrated data (pCD) bank");
+  ocd_.set_class_description("A module that performs a precalibration of the unified digitized data (UDD) bank into he precalibrated data (pCD) bank");
   ocd_.set_class_library("falaise");
   // ocd_.set_class_documentation("");
 
   dpp::base_module::common_ocd(ocd_);
 
   {
-    // Description of the 'SD_label' configuration property :
+    // Description of the 'UDD_label' configuration property :
     datatools::configuration_property_description& cpd = ocd_.add_property_info();
     cpd.set_name_pattern("UDD_label")
-      .set_terse_description("The label/name of the 'unified digitized data' bank")
+      .set_terse_description("The label/name of the 'UDD bank")
       .set_traits(datatools::TYPE_STRING)
       .set_mandatory(false)
-      .set_long_description(
-                            "This is the name of the bank to be used   \n"
-                            "as the input unified  calorimeter and tracker hits.  \n")
+      .set_long_description("This is the name of the output UDD bank to be used\n")
       .set_default_value_string(snedm::labels::unified_digitized_data())
-      .add_example(
-                   "Use an alternative name for the 'unified digitized data' bank:: \n"
-                   "                                \n"
-                   "  UDD_label : string = \"UDD2\" \n"
-                   "                                \n");
+      .add_example("Use an alternative name for the 'UDD' bank: \n"
+                   "\n"
+                   "  UDD_label : string = \"UDD_v2\"\n"
+                   "\n");
   }
 
   {
-    // Description of the 'CD_label' configuration property :
+    // Description of the 'pCD_label' configuration property :
     datatools::configuration_property_description& cpd = ocd_.add_property_info();
     cpd.set_name_pattern("pCD_label")
-      .set_terse_description("The label/name of the 'precalibrated data' bank")
+      .set_terse_description("The label/name of the output 'pCD' bank")
       .set_traits(datatools::TYPE_STRING)
       .set_mandatory(false)
-      .set_long_description(
-                            "This is the name of the bank to be used    \n"
-                            "as the output precalibrated calorimeter and tracker hits. \n")
+      .set_long_description("This is the name of the pCD bank to be used\n")
       .set_default_value_string(snedm::labels::precalibrated_data())
-      .add_example(
-                   "Use an alternative name for the 'precalibrated data' bank:: \n"
-                   "                                  \n"
-                   "  pCD_label : string = \"pCD2\"   \n"
-                   "                                  \n");
+      .add_example("Use an alternative name for the 'pCD' bank:\n"
+                   "\n"
+                   "  pCD_label : string = \"pCD2\"\n"
+                   "\n");
   }
 
   // Additionnal configuration hints :
   ocd_.set_configuration_hints(
                                "Here is a full configuration example in the \n"
-                               "``datatools::properties`` ASCII format::    \n"
+                               "``datatools::properties`` ASCII format:     \n"
                                "                                            \n"
                                "  UDD_label    : string = \"UDD\"           \n"
                                "  pCD_label    : string = \"pCD\"           \n"
@@ -942,6 +935,6 @@ DOCD_CLASS_IMPLEMENT_LOAD_END()  // Closing macro for implementation
 
 // Registration macro for class 'snemo::processing::udd2pcd_module' :
 DOCD_CLASS_SYSTEM_REGISTRATION(snemo::processing::udd2pcd_module,
-				 "snemo::processing::udd2pcd_module")
+			       "snemo::processing::udd2pcd_module")
 
 // end of falaise/snemo/processing/udd2pcd_module.cc

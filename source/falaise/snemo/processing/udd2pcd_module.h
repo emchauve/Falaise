@@ -77,11 +77,11 @@ namespace snemo {
 
       /// Precalibrate calorimeter hits with fwmeas
       void precalibrate_calo_hits_fwmeas(const snemo::datamodel::unified_digitized_data & udd_data_,
-					 snemo::datamodel::PreCalibCalorimeterHitHdlCollection & calo_hits_);
+					 snemo::datamodel::PreCalibratedCalorimeterHitHdlCollection & calo_hits_);
 
       /// Precalibrate calorimeter hits with swmeas
       void precalibrate_calo_hits_swmeas(const snemo::datamodel::unified_digitized_data & udd_data_,
-					 snemo::datamodel::PreCalibCalorimeterHitHdlCollection & calo_hits_);
+					 snemo::datamodel::PreCalibratedCalorimeterHitHdlCollection & calo_hits_);
 
       /// Main process calo function
       void process_calo_impl(const snemo::datamodel::unified_digitized_data & udd_data_,
@@ -89,7 +89,7 @@ namespace snemo {
 
       /// Precalibrated tracker hits
       void precalibrate_tracker_hits_earliest(const snemo::datamodel::unified_digitized_data & udd_data_,
-					      snemo::datamodel::PreCalibTrackerHitHdlCollection& tracker_hits_);
+					      snemo::datamodel::PreCalibratedTrackerHitHdlCollection& tracker_hits_);
 
       /// Basic tracker clusterisation
       void basic_tracker_clusterisation(snemo::datamodel::precalibrated_data & pcd_data_);
